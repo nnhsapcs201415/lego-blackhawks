@@ -33,8 +33,8 @@ public class Robot {
             int selection = -1;
             for(int ii = 0; ii < j.length; ii++) {
                 if(j[ii] != null) {
-                    if(Math.abs((cdir-getDir)%Math.PI) < min || Math.abs((cdir-getDir)%Math.PI-Math.PI) < min) {
-                        min = Math.min(Math.abs((cdir-getDir)%Math.PI), Math.abs((cdir-getDir)%Math.PI-Math.PI));
+                    if(Math.abs((cdir-getDir(x, y, j[ii]))%Math.PI) < min || Math.abs((cdir-getDir(x, y, j[ii]))%Math.PI-Math.PI) < min) {
+                        min = Math.min(Math.abs((cdir-getDir(x, y, j[ii]))%Math.PI), Math.abs((cdir-getDir(x, y, j[ii]))%Math.PI-Math.PI));
                         selection = ii;
                     }
                 }

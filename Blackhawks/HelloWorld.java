@@ -1,10 +1,8 @@
 import lejos.nxt.*;
 import java.util.concurrent.TimeUnit;
 
-public class HelloWorld
-{
-    public static void main(String[] args)
-    {
+public class HelloWorld {
+    public static void main(String[] args) {
         System.out.println("Hello World");
 
         Motor.A.setAcceleration(100000);
