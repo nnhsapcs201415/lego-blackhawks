@@ -1,4 +1,14 @@
 #BlueJ class context
 comment0.params=args
 comment0.target=void\ main(java.lang.String[])
-numComments=1
+comment1.params=j
+comment1.target=int[]\ getBestPath(Jar[])
+comment2.params=jars\ start
+comment2.target=int[]\ getBestPathFrom(Jar[],\ int)
+comment3.params=jars\ path
+comment3.target=double\ getPathDistance(Jar[],\ int[])
+comment4.params=x1\ y1\ x2\ y2
+comment4.target=double\ getPointDis(double,\ double,\ double,\ double)
+comment5.params=x\ y\ j
+comment5.target=double\ getDir(double,\ double,\ Jar)
+numComments=6
