@@ -4,12 +4,12 @@ import lejos.nxt.*;
 public class PilotMover {
 
     public static void main(String[] args) {
-        DifferentialPilot p = new DifferentialPilot(26f, 26f*3.035f, Motor.A, Motor.C);
+        DifferentialPilot p = new DifferentialPilot(26f, 26f*3.035f, Motor.B, Motor.C);
 
-        //while (true) {
+        while (true) {
             //p.setSpeed(30, 30);
-            //p.travel(200);
-            p.rotate(360);
-        //}
+            p.travel(200);
+            p.rotate(90);
+        }
     }
 }
