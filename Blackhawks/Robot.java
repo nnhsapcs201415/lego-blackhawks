@@ -1,3 +1,4 @@
+//This trash is useless
 public class Robot {
     private static double x;
     private static double y;

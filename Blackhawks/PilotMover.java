@@ -10,6 +10,7 @@ public class PilotMover {
             //p.setSpeed(30, 30);
             p.travel(200);
             p.rotate(90);
+            Motor.A.setSpeed(10000);
         }
     }
 }
