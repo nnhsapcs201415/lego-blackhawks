@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=r
+comment0.target=UltrasonicSense(Robot)
+comment1.params=feature\ detector
+comment1.target=void\ featureDetected(lejos.robotics.objectdetection.Feature,\ lejos.robotics.objectdetection.FeatureDetector)
+numComments=2

@@ -19,7 +19,7 @@ public class HelloWorld {
         UltrasonicSensor us = new UltrasonicSensor(SensorPort.S4);
         FeatureDetector fd = new RangeFeatureDetector(us, MAX_DISTANCE, PERIOD);
         ObjectDetect listener = new ObjectDetect();
-        //fd.addListener(listener);
+        fd.addListener(listener);
         SensorPort.S3.addSensorPortListener(new LightSense());
         
 
