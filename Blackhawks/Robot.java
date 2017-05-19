@@ -2,6 +2,9 @@ import lejos.nxt.*;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.*;
 public class Robot {
+    private static final int DIS_TO_PUSHED_CAN = 10; //The distance to a can when it is being pushed
+    private static final int DIR_ERROR = 5; //The degrees the robot can be off of the targeted can by before it makes an adjustment
+    
     private DifferentialPilot movePilot;
     private RegulatedMotor rotatePilot;
     private LightSense light;
@@ -11,9 +14,10 @@ public class Robot {
     
     /**The behavior which the robot is in
      * 0 - Scanning for cans
-     * 1 - Moving towards a can
-     * 2 - Pushing out a can
-     * 3 - Performing a final scan
+     * 1 - Turning towards a can
+     * 2 - Moving towards a can
+     * 3 - Pushing out a can
+     * 4 - Performing a final scan
      */
     private int behaviour;
     public Robot(RegulatedMotor m1, RegulatedMotor m2, RegulatedMotor rot, float diam, float axle) {
@@ -29,7 +33,9 @@ public class Robot {
         
     }
     
-    public void scanForPushedCan() {
+    public void moveToCan() {
+        movePilot.turn(canAngle);
+        rotatePilot.rotateTo(0);
         
     }
     
@@ -66,6 +72,12 @@ public class Robot {
             if(Math.min(rotatePilot.getTachoCount(), 360-rotatePilot.getTachoCount()) < Math.min(canAngle, 360-canAngle)) {
                 canAngle = rotatePilot.getTachoCount();
                 canDis = dis;
+            }
+        } else if(behaviour == 2) {
+            canAngle = rotatePilot.getTachoCount();
+            canDis = dis;
+            if(Math.abs(canAngle) > DIR_ERROR) {
+                pilot.rotate(canAngle);
             }
         }
     }
