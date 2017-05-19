@@ -33,6 +33,13 @@ public class Robot {
         
     }
     
+    /**
+     * Used to interupt current movement to make an adjustment to the direction
+     */
+    public void poke(double offset) {
+        pilot.rotate(offset);
+    }
+    
     public void moveToCan() {
         movePilot.turn(canAngle);
         rotatePilot.rotateTo(0);
@@ -77,7 +84,7 @@ public class Robot {
             canAngle = rotatePilot.getTachoCount();
             canDis = dis;
             if(Math.abs(canAngle) > DIR_ERROR) {
-                pilot.rotate(canAngle);
+                movePilot.rotate(canAngle);
             }
         }
     }
