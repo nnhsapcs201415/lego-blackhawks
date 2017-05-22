@@ -1,6 +1,5 @@
 import lejos.nxt.*;
 import lejos.robotics.objectdetection.*;
-import java.util.concurrent.TimeUnit;
 public class UltrasonicSense implements FeatureListener {
     //The maximum detection distance to indicate a can
     public static int MAX_DETECT = 80;

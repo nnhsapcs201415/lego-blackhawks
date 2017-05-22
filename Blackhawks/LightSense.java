@@ -1,7 +1,7 @@
 import lejos.nxt.*;
 import lejos.robotics.objectdetection.*;
-import java.util.concurrent.TimeUnit;
 public class LightSense implements SensorPortListener {
+
     private final int DARK_COLOR = 200;
     
     Robot rob;
