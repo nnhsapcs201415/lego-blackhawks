@@ -1,4 +1,5 @@
 import lejos.nxt.*;
+import lejos.robotics.objectdetection.*;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.*;
 public class Robot {
@@ -10,8 +11,8 @@ public class Robot {
     private RegulatedMotor rotatePilot;
     private LightSense light;
     private UltrasonicSense distance;
-    private double canAngle;
-    private double initCanAngle;
+    private int canAngle;
+    private int initCanAngle;
     private double canDis;
     ScanThread thread;
 
@@ -33,19 +34,21 @@ public class Robot {
         thread = new ScanThread(rotatePilot);
         light = new LightSense(this);
         distance = new UltrasonicSense(this);
-        initAngle = 0;
-        SensorPort.S2.addSensorPortListener(light);
-        SensorPort.S3.addSensorPortListener(distance);
+        initCanAngle = 0;
+        SensorPort.S1.addSensorPortListener(light);
+        UltrasonicSensor us = new UltrasonicSensor(SensorPort.S4);
+        FeatureDetector fd = new RangeFeatureDetector(us, 50, 500);
+        fd.addListener(distance);
     }
 
     public void main() {
         while(true) {
             if(behaviour == 0) {
-                this.getNearestCanAngle;
+                this.getNearestCanAngle();
                 this.switchBehaviour(1);
             } else if(behaviour == 1) {
                 this.rotateToCan();
-                this.switchBehaaviour(2);
+                this.switchBehaviour(3);
             } else if(behaviour == 2) {
                 this.moveToCan();
             } else if(behaviour == 3) {
@@ -53,9 +56,14 @@ public class Robot {
             }
         }
     }
+    
+    public static void main(String[] args) {
+        Robot r = new Robot(Motor.B, Motor.C, Motor.A, 26f, 26f*3.03f);
+        r.main();
+    }
 
     public void rotateToCan() {
-        movePilot.turn(canAngle);
+        movePilot.rotate(canAngle);
         rotatePilot.rotateTo(0);
     }
 
@@ -80,7 +88,7 @@ public class Robot {
      * Called to change the robots mode
      */
     public void switchBehaviour(int nmode) {
-        thread.terminate();
+        thread.interrupt();
         if(nmode == 0) {
             rotatePilot.rotateTo(0);
             canAngle = 180;
@@ -92,17 +100,6 @@ public class Robot {
             movePilot.forward();
         }
         behaviour = nmode;
-    }
-
-    /**
-     * Called by light sensor when the robot is on the edge
-     */
-    public void detectEdge() {
-        if(behaviour == 3) {
-            movePilot.stop();
-            movePilot.rotate(initCanAngle-180);
-            this.switchBehaviour(0);
-        }
     }
 
     /**
@@ -129,6 +126,8 @@ public class Robot {
      * Called by LightSense when a dark line (edge) is reached)
      */
     public void edgeReached() {
-        
+        movePilot.stop();
+        rotatePilot.rotate((int)initCanAngle-180);
+        this.switchBehaviour(0);
     }
 }

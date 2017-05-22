@@ -2,7 +2,7 @@ import lejos.nxt.*;
 import lejos.robotics.objectdetection.*;
 public class LightSense implements SensorPortListener {
 
-    private final int DARK_COLOR = 200;
+    private final int DARK_COLOR = 780;
     
     Robot rob;
     public LightSense(Robot r) {

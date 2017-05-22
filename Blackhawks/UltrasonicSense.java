@@ -10,6 +10,7 @@ public class UltrasonicSense implements FeatureListener {
     
     public void featureDetected(Feature feature, FeatureDetector detector) {
         double range = feature.getRangeReading().getRange();
+        System.out.println(range);
         if(range < MAX_DETECT) {
             rob.detectCan(range);
         }
