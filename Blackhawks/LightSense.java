@@ -1,14 +1,19 @@
 import lejos.nxt.*;
 import lejos.robotics.objectdetection.*;
 public class LightSense implements SensorPortListener {
-    private Robot robot;
-    public LightSense(Robot rob) {
-        robot = rob;
-    }
 
+    private final int DARK_COLOR = 200;
+    
+    Robot rob;
+    public LightSense(Robot r) {
+        rob = r;
+        SensorPort.S1.addSensorPortListener(this);
+    }
+    
     public void stateChanged(SensorPort a, int b, int c) {
-        if(c > BLACK_THRESHOLD) {
-            robot.detectLine();
+        //System.out.println("Stuff: " + c+" "+b);
+        if (c < DARK_COLOR) {
+            rob.edgeReached();
         }
     }
 }

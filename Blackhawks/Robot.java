@@ -124,4 +124,11 @@ public class Robot {
             }
         }
     }
+    
+    /**
+     * Called by LightSense when a dark line (edge) is reached)
+     */
+    public void edgeReached() {
+        
+    }
 }
