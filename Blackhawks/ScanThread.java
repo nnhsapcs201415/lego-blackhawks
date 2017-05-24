@@ -8,8 +8,8 @@ public class ScanThread extends Thread {
     }
     public void run() {
         for(;;) {
-            motor.rotateTo(-20);
-            motor.rotateTo(20);
+            motor.rotateTo(-30);
+            motor.rotateTo(30);
         }
     }
 }
